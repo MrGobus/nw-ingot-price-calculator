@@ -1,3 +1,1 @@
-#New World: Ingot Price Calculator
-
-test
+# New World: Ingot Price Calculator
