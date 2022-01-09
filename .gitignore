@@ -1,4 +1,9 @@
-*
+/*
 !.gitignore
 !README.md
 !LICENSE
+!package.json
+!package-lock.json
+
+!public
+!src
