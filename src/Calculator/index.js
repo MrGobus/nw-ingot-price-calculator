@@ -7,8 +7,15 @@ import {
     Typography,
     Paper,
     TextField,
-    CssBaseline
+    CssBaseline,
+    IconButton,
+    Box,
+    Dialog
 } from '@mui/material';
+
+import HelpDialog from "./HelpDialog"
+
+import HelpIcon from '@mui/icons-material/Help';
 
 class Calculator extends Component {
 
@@ -77,6 +84,8 @@ class Calculator extends Component {
             platinumOrePrice,
             tolviumPrice,
             cinnabarPrice,
+
+            helpDialog_open: false,
         }
 
         this.handle_changePrice_flux = this.handle_changePrice_flux.bind(this)
@@ -93,6 +102,17 @@ class Calculator extends Component {
         this.handle_changePrice_cinnabar = this.handle_changePrice_cinnabar.bind(this)
         this.handle_changePrice_tolvium = this.handle_changePrice_tolvium.bind(this)
 
+        this.handle_showHelpDialog = this.handle_showHelpDialog.bind(this)
+        this.handle_hideHelpDialog = this.handle_hideHelpDialog.bind(this)
+
+    }
+
+    handle_showHelpDialog = e => {
+        this.setState({helpDialog_open: true})
+    }
+
+    handle_hideHelpDialog = e => {
+        this.setState({helpDialog_open: false})
     }
 
     handle_changePrice_flux = e => {
@@ -212,12 +232,25 @@ class Calculator extends Component {
     render = () => <Fragment>
 
         <CssBaseline />
-        
+
+        <HelpDialog 
+            open={this.state.helpDialog_open}
+            onClose={this.handle_hideHelpDialog}
+        />
+
         <AppBar position="sticky">
             <Toolbar>
                 <Typography variant="h6" component="div">
                     New World: Ingot Price Calculator
                 </Typography>
+                <Box sx={{ flexGrow: 1 }} />
+                    <IconButton 
+                        size="large"
+                        color="inherit"
+                        onClick={this.handle_showHelpDialog}
+                    >
+                        <HelpIcon/>
+                    </IconButton >
             </Toolbar>
         </AppBar>
 
